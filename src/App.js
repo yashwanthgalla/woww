@@ -9,20 +9,40 @@ function useInterval(callback, delay) {
 	}, [callback, delay]);
 }
 
-function BackgroundRotator() {
+function BackgroundTrain({ columns = 12, itemsPerSet = 8 }) {
+	const base = process.env.PUBLIC_URL || '';
 	const images = useMemo(() => [
-		'/Pics/IMG-20250815-WA0003.jpg',
-		'/Pics/IMG-20250815-WA0004.jpg',
-		'/Pics/IMG-20250815-WA0005.jpg',
-		'/Pics/IMG-20250815-WA0006.jpg',
-	], []);
-	const [index, setIndex] = useState(0);
-	useInterval(() => setIndex((i) => (i + 1) % images.length), 5000);
+		`${base}/Pics/IMG-20250815-WA0002.jpg`,
+		`${base}/Pics/IMG-20250815-WA0003.jpg`,
+		`${base}/Pics/IMG-20250815-WA0004.jpg`,
+		`${base}/Pics/IMG-20250815-WA0005.jpg`,
+		`${base}/Pics/IMG-20250815-WA0006.jpg`,
+		`${base}/Pics/IMG-20250815-WA0007.jpg`,
+	], [base]);
+
 	return (
-		<div className="background-container">
-			{images.map((src, i) => (
-				<div key={src} className={`background-image ${i === index ? 'active' : ''}`} style={{ backgroundImage: `url(${src})` }} />
-			))}
+		<div className="bg-train" aria-hidden>
+			{Array.from({ length: columns }).map((_, colIndex) => {
+				const list = Array.from({ length: itemsPerSet }).map((__, i) => images[(i + colIndex) % images.length]);
+				const speedSeconds = 35 + (colIndex % 6) * 7;
+				const reverse = colIndex % 2 === 1;
+				return (
+					<div className="track" key={colIndex}>
+						<div
+							className={`track-inner ${reverse ? 'reverse' : ''}`}
+							style={{ ['--speed']: `${speedSeconds}s` }}
+						>
+							{[0, 1].map((rep) => (
+								<div className="track-set" key={rep}>
+									{list.map((src, i) => (
+										<div className="car" key={`${rep}-${i}`} style={{ backgroundImage: `url(${src})` }} />
+									))}
+								</div>
+							))}
+						</div>
+					</div>
+				);
+			})}
 		</div>
 	);
 }
@@ -121,14 +141,15 @@ function BirthdayCard() {
 }
 
 function Gallery() {
+	const base = process.env.PUBLIC_URL || '';
 	const photos = useMemo(() => [
-		'/Pics/IMG-20250815-WA0002.jpg',
-		'/Pics/IMG-20250815-WA0003.jpg',
-		'/Pics/IMG-20250815-WA0004.jpg',
-		'/Pics/IMG-20250815-WA0005.jpg',
-		'/Pics/IMG-20250815-WA0006.jpg',
-		'/Pics/IMG-20250815-WA0007.jpg',
-	], []);
+		`${base}/Pics/IMG-20250815-WA0002.jpg`,
+		`${base}/Pics/IMG-20250815-WA0003.jpg`,
+		`${base}/Pics/IMG-20250815-WA0004.jpg`,
+		`${base}/Pics/IMG-20250815-WA0005.jpg`,
+		`${base}/Pics/IMG-20250815-WA0006.jpg`,
+		`${base}/Pics/IMG-20250815-WA0007.jpg`,
+	], [base]);
 	const [index, setIndex] = useState(0);
 	const containerRef = useRef(null);
 	const throttleRef = useRef(false);
@@ -224,7 +245,7 @@ function SpecialMessage() {
 export default function App() {
 	return (
 		<>
-			<BackgroundRotator />
+			<BackgroundTrain columns={12} itemsPerSet={8} />
 			<FloatingElements />
 			<BirthdayCard />
 			<Gallery />

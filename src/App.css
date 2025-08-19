@@ -15,32 +15,66 @@ body {
 	position: relative;
 }
 
-/* Background Image Rotator */
-.background-container {
+/* Background Photo Train */
+.bg-train {
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
+	overflow: hidden;
 	z-index: -2;
+	display: grid;
+	grid-template-columns: repeat(12, 1fr);
+	gap: 12px;
+	padding: 12px;
 }
 
-.background-image {
+.track {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.track-inner {
 	position: absolute;
 	top: 0;
 	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	animation: scrollDown var(--speed, 40s) linear infinite;
+}
+.track-inner.reverse { animation-name: scrollUp; }
+
+.track-set {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.car {
 	width: 100%;
-	height: 100%;
+	height: calc(100% / 6 - 10px);
+	min-height: 120px;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	opacity: 0;
-	transition: opacity 2s ease-in-out;
-	filter: brightness(0.3) blur(1px);
+	border-radius: 14px;
+	filter: brightness(0.45) saturate(1.1);
+	box-shadow: 0 6px 16px rgba(0,0,0,0.25);
 }
 
-.background-image.active {
-	opacity: 1;
+@keyframes scrollDown {
+	0% { transform: translateY(-50%); }
+	100% { transform: translateY(0%); }
+}
+@keyframes scrollUp {
+	0% { transform: translateY(0%); }
+	100% { transform: translateY(-50%); }
 }
 
 /* Floating Elements */
