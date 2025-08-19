@@ -9,7 +9,7 @@
 
 body {
 	font-family: 'Poppins', sans-serif;
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 	min-height: 100vh;
 	overflow-x: hidden;
 	position: relative;
@@ -26,8 +26,8 @@ body {
 	z-index: -2;
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-	gap: 12px;
-	padding: 12px;
+	gap: 8px;
+	padding: 8px;
 }
 
 .track {
@@ -45,7 +45,7 @@ body {
 	bottom: 0;
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
+	gap: 8px;
 	animation: scrollDown var(--speed, 40s) linear infinite;
 }
 .track-inner.reverse { animation-name: scrollUp; }
@@ -53,28 +53,29 @@ body {
 .track-set {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
+	gap: 8px;
 }
 
 .car {
 	width: 100%;
-	height: calc(100% / 6 - 10px);
-	min-height: 120px;
+	height: calc(100% / 8 - 6px);
+	min-height: 80px;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
-	border-radius: 14px;
-	filter: brightness(0.45) saturate(1.1);
-	box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+	border-radius: 8px;
+	filter: brightness(0.4) saturate(1.2) contrast(1.1);
+	box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+	opacity: 0.9;
 }
 
 @keyframes scrollDown {
-	0% { transform: translateY(-50%); }
+	0% { transform: translateY(-100%); }
 	100% { transform: translateY(0%); }
 }
 @keyframes scrollUp {
 	0% { transform: translateY(0%); }
-	100% { transform: translateY(-50%); }
+	100% { transform: translateY(-100%); }
 }
 
 /* Floating Elements */
@@ -270,6 +271,11 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+	.bg-train {
+		grid-template-columns: repeat(8, 1fr);
+		gap: 6px;
+		padding: 6px;
+	}
 	.birthday-card { padding: 2rem; margin: 1rem; }
 	.birthday-title { font-size: 3rem; }
 	.title-decoration { gap: 0.5rem; }
@@ -284,6 +290,11 @@ body {
 	.message-title { font-size: 2rem; }
 }
 @media (max-width: 480px) {
+	.bg-train {
+		grid-template-columns: repeat(6, 1fr);
+		gap: 4px;
+		padding: 4px;
+	}
 	.floating-elements .flower, .floating-elements .heart, .floating-elements .sparkle, .floating-elements .butterfly { font-size: 1.5rem; }
 	.birthday-title { font-size: 2.5rem; }
 	.birthday-message { font-size: 1rem; }
