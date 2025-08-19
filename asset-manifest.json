@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/woww/static/css/main.8aaae66d.css",
+    "main.css": "/woww/static/css/main.838471b6.css",
     "main.js": "/woww/static/js/main.2dfd43ec.js",
     "index.html": "/woww/index.html",
-    "main.8aaae66d.css.map": "/woww/static/css/main.8aaae66d.css.map",
+    "main.838471b6.css.map": "/woww/static/css/main.838471b6.css.map",
     "main.2dfd43ec.js.map": "/woww/static/js/main.2dfd43ec.js.map"
   },
   "entrypoints": [
-    "static/css/main.8aaae66d.css",
+    "static/css/main.838471b6.css",
     "static/js/main.2dfd43ec.js"
   ]
 }
