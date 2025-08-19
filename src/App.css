@@ -28,6 +28,9 @@ body {
 	grid-template-columns: repeat(12, 1fr);
 	gap: 8px;
 	padding: 8px;
+	will-change: transform;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
 }
 
 .track {
@@ -47,6 +50,9 @@ body {
 	flex-direction: column;
 	gap: 8px;
 	animation: scrollDown var(--speed, 40s) linear infinite;
+	will-change: transform;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
 }
 .track-inner.reverse { animation-name: scrollUp; }
 
@@ -275,6 +281,7 @@ body {
 		grid-template-columns: repeat(8, 1fr);
 		gap: 6px;
 		padding: 6px;
+		-webkit-overflow-scrolling: touch;
 	}
 	.birthday-card { padding: 2rem; margin: 1rem; }
 	.birthday-title { font-size: 3rem; }
@@ -294,6 +301,10 @@ body {
 		grid-template-columns: repeat(6, 1fr);
 		gap: 4px;
 		padding: 4px;
+		-webkit-overflow-scrolling: touch;
+	}
+	.car {
+		min-height: 60px;
 	}
 	.floating-elements .flower, .floating-elements .heart, .floating-elements .sparkle, .floating-elements .butterfly { font-size: 1.5rem; }
 	.birthday-title { font-size: 2.5rem; }
